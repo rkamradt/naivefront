@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 export default class List extends React.Component {
   constructor (props){
@@ -8,7 +8,7 @@ export default class List extends React.Component {
     };
   }
   componentDidMount() {
-    fetch('/api')
+    fetch('/api/operator/wallets')
       .then(response => response.json())
       .then(data => this.setState({ ids: data }))
   }
@@ -17,7 +17,7 @@ export default class List extends React.Component {
      return (
        <div>
        {this.state.ids.map(function(d, idx){
-          return (<li key={idx}>{d}</li>)
+          return (<li key={idx}>id {d.id} addresses {d.addresses.length}</li>)
         })}
        </div>
      )

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 export default class Post extends React.Component {
   constructor() {
@@ -8,16 +8,25 @@ export default class Post extends React.Component {
 
    handleSubmit(event) {
      event.preventDefault()
-     const data = new FormData(event.target)
 
-     fetch('/api/', {
+     const data = JSON.stringify({
+       // don't like having the value as state, when it's strictly one-way
+       password: this.refs.password.value
+     })
+     fetch('/api/operator/wallets', {
        method: 'POST',
+       body: data,
+       headers:{
+         'Content-Type': 'application/json'
+       }
      })
    }
   render() {
      return (
-       <form onSubmit={this.handleSubmit}>
-         <button>Post!</button>
+       <form id='createWallet' onSubmit={this.handleSubmit}>
+         <label htmlFor='inputPassword'>Wallet Password</label>
+         <input id='inputPassword' type='password' ref='password' className='form-control' required='true' />
+         <button type='submit'>Create Wallet</button>
        </form>
      );
    }
