@@ -1,0 +1,23 @@
+version: "2"
+services:
+  web:
+    build: .
+    networks:
+      - network
+    volumes:
+     - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+     - "80:80"
+  api:
+    image: rlkamradt/naivecoin
+    ports:
+     - "3001:3001"
+    environment:
+     - NAME=1
+     - HOST=0.0.0.0
+    volumes:
+     - ./:/naivecoin
+    networks:
+     - network
+networks:
+  network:
