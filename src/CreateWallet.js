@@ -1,6 +1,7 @@
 import React from 'react'
+import './CreateWallet.css'
 
-export default class Post extends React.Component {
+export default class CreateWallet extends React.Component {
   constructor() {
      super()
      this.handleSubmit = this.handleSubmit.bind(this)
@@ -23,7 +24,7 @@ export default class Post extends React.Component {
    }
   render() {
      return (
-       <form id='createWallet' onSubmit={this.handleSubmit}>
+       <form className='CreateWalletForm' onSubmit={this.handleSubmit}>
          <label htmlFor='inputPassword'>Wallet Password</label>
          <input id='inputPassword' type='password' ref='password' className='form-control' required='true' />
          <button type='submit'>Create Wallet</button>

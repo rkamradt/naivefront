@@ -1,0 +1,14 @@
+.WalletList {
+  background-color: lightgrey;
+  height: 300px;
+  padding: 20px;
+  color: white;
+
+}
+
+.WalletListRow {
+  background-color: lightblue;
+  padding: 2px;
+  color: #020202;
+
+}
