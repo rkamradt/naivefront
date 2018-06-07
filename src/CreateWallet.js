@@ -26,7 +26,7 @@ export default class CreateWallet extends React.Component {
      return (
        <form className='CreateWalletForm' onSubmit={this.handleSubmit}>
          <label htmlFor='inputPassword'>Wallet Password</label>
-         <input id='inputPassword' type='password' ref='password' className='form-control' required='true' />
+         <input type='password' ref='password' className='form-control' required='true' />
          <button type='submit'>Create Wallet</button>
        </form>
      );

@@ -15,19 +15,17 @@ export default class WalletList extends React.Component {
       .then(response => response.json())
       .then(data => this.setState({ ids: data }))
   }
-
   render() {
      return (
        <div className='WalletList'>
-       {this.state.ids.map(function(d, idx){
-          return (
-            <li className='WalletListRow' key={idx}>
-              <div>id {d.id.substring(0,10)}</div>
+       {this.state.ids.map(d => { return (
+              <div className='WalletListRow' >
+              <div>wallet id {d.id.substring(0,10)}</div>
               <AddressList addresses={d.addresses} />
-              <CreateAddress />
-            </li>
-          )
-        })}
+              <CreateAddress walletId={d.id}/>
+              </div>
+          )})
+        }
        </div>
      )
   }
