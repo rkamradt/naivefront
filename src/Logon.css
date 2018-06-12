@@ -1,0 +1,13 @@
+.Logon {
+  height: 600px;
+  padding: 20px;
+}
+
+.LogonHeader {
+  background-color: #222;
+  height: 100px;
+  padding: 20px;
+  color: white;
+  text-align: center;
+  font-size: 1.5em;
+}

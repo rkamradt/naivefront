@@ -10,7 +10,7 @@ export default class CreateAddress extends React.Component {
   handleSubmit(event) {
    event.preventDefault()
 
-   fetch('/api/operator/wallets/'+this.props.walletId+'/addresses', {
+   fetch('/naivecoin/operator/wallets/'+this.props.walletId+'/addresses', {
      method: 'POST',
      headers:{
        'Content-Type': 'application/json',

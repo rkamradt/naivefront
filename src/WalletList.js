@@ -11,7 +11,7 @@ export default class WalletList extends React.Component {
     };
   }
   componentDidMount() {
-    fetch('/api/operator/wallets')
+    fetch('/naivecoin/operator/wallets')
       .then(response => response.json())
       .then(data => this.setState({ ids: data }))
   }

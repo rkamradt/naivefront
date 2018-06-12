@@ -8,7 +8,15 @@ services:
      - ./nginx.conf:/etc/nginx/nginx.conf
     ports:
      - "80:80"
-  api:
+  naiveuser:
+    image: rlkamradt/naiveuser
+    networks:
+     - network
+  redis:
+    image: redis:alpine
+    networks:
+      - network
+  naivecoin:
     image: rlkamradt/naivecoin
     ports:
      - "3001:3001"

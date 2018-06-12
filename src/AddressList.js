@@ -13,7 +13,7 @@ export default class AddressList extends React.Component {
     const data = JSON.stringify({
       rewardAddress: event.target.id
     })
-    fetch('/api/miner/mine', {
+    fetch('/naivecoin/miner/mine', {
       method: 'POST',
       body: data,
       headers:{

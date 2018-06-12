@@ -14,7 +14,7 @@ export default class CreateWallet extends React.Component {
        // don't like having the value as state, when it's strictly one-way
        password: this.refs.password.value
      })
-     fetch('/api/operator/wallets', {
+     fetch('/naivecoin/operator/wallets', {
        method: 'POST',
        body: data,
        headers:{
