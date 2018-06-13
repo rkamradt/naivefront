@@ -9,12 +9,12 @@ export default class Logon extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const data = JSON.stringify({
+    const data = {
       username: this.refs.username.value,
       fullname: this.refs.fullname.value,
       email: this.refs.email.value,
       password: this.refs.password.value
-    })
+    }
     this.props.handleLogonSubmit(data);
   }
   render() {
@@ -25,7 +25,7 @@ export default class Logon extends Component {
         <h2 >Please sign in or sign up</h2>
         <label >User Name</label>
         <input type='text' ref='username' placeholder='Username' required='true' autoFocus='true' />
-        <label >Email address</label>
+        <label >Full Name</label>
         <input type='text' ref='fullname' placeholder='Full Name' required='false' />
         <label >Email address</label>
         <input type='email' ref='email' placeholder='Email address' required='false' />
