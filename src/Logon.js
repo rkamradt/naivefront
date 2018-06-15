@@ -19,21 +19,18 @@ export default class Logon extends Component {
   }
   render() {
     return (
-      <div className="Logon">
-      <h1 className="LogonHeader">Logon or Signup</h1>
       <form onSubmit={this.handleSubmit}>
         <h2 >Please sign in or sign up</h2>
         <label >User Name</label>
-        <input type='text' ref='username' placeholder='Username' required='true' autoFocus='true' />
+        <input type='text' ref='username' placeholder='Username' required autoFocus='true' />
         <label >Full Name</label>
-        <input type='text' ref='fullname' placeholder='Full Name' required='false' />
+        <input type='text' ref='fullname' placeholder='Full Name' />
         <label >Email address</label>
-        <input type='email' ref='email' placeholder='Email address' required='false' />
+        <input type='email' ref='email' placeholder='Email address' />
         <label >Password</label>
-        <input type='password' ref='password' required='true' />
+        <input type='password' ref='password' required />
         <button type='submit' className='btn btn-lg btn-primary btn-block'>Sign in</button>
       </form>
-      </div>
     )
   }
 }
