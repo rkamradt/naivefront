@@ -1,5 +1,4 @@
 .Logon {
-  height: 600px;
   padding: 20px;
 }
 
@@ -10,4 +9,12 @@
   color: white;
   text-align: center;
   font-size: 1.5em;
+}
+
+.LogonGroup {
+  padding: 2px;
+}
+
+.LogonLabel {
+  padding: 2px;
 }

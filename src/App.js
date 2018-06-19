@@ -56,7 +56,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div class="container-fluid App">
         <Header handleLogonSubmit={ this.handleLogonSubmit } username={this.state.username} password={this.state.password} />
         <Main username={this.state.username} password={this.state.password} />
       </div>

@@ -34,12 +34,26 @@ export default class User extends React.Component {
   }
   render() {
      return (
-      <div className='User' >
-      <div>user id {this.state.user.username}</div>
-      <div>Full Name {this.state.user.fullname}</div>
-      <div>Email {this.state.user.email}</div>
-      <AccountList accounts={this.state.user.accounts} />
-      <CreateAccount username={this.props.username} password={this.props.password} update={this.fetchState}/>
+      <div class='User' >
+        <table class='table' >
+        <caption>User info</caption>
+          <thead>
+            <tr>
+              <th>User Id</th>
+              <th>Full Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{this.state.user.username}</td>
+              <td>{this.state.user.fullname}</td>
+              <td>{this.state.user.email}</td>
+            </tr>
+          </tbody>
+        </table>
+        <AccountList accounts={this.state.user.accounts} />
+        <CreateAccount username={this.props.username} password={this.props.password} update={this.fetchState}/>
       </div>
      )
   }
