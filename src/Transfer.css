@@ -1,0 +1,50 @@
+.modal {
+  font-size: 12px;
+  display: initial;
+  position: inherit;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
+.menu {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+.menu-item {
+  cursor: pointer;
+  padding: 5px;
+  height: 28px;
+  border-bottom: 1px solid rgb(187, 187, 187);
+}
+.menu-item:hover {
+  color: #2980b9;
+}

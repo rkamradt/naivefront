@@ -16,8 +16,12 @@ export default class CreateWallet extends React.Component {
      })
      fetch('/naivecoin/operator/wallets', {
        method: 'POST',
+       cache: 'no-cache',
        body: data,
        headers:{
+         'pragma': 'no-cache',
+         'cache-control': 'no-cache',
+         'Accept': 'application/json',
          'Content-Type': 'application/json'
        }
      })

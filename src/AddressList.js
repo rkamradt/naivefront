@@ -16,7 +16,11 @@ export default class AddressList extends React.Component {
     fetch('/naivecoin/miner/mine', {
       method: 'POST',
       body: data,
+      cache: 'no-cache',
       headers:{
+        'pragma': 'no-cache',
+        'cache-control': 'no-cache',
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
       }
     })

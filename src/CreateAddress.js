@@ -12,7 +12,11 @@ export default class CreateAddress extends React.Component {
 
    fetch('/naivecoin/operator/wallets/'+this.props.walletId+'/addresses', {
      method: 'POST',
+     cache: 'no-cache',
      headers:{
+       'pragma': 'no-cache',
+       'cache-control': 'no-cache',
+       'Accept': 'application/json',
        'Content-Type': 'application/json',
        'password': this.refs.password.value
      }

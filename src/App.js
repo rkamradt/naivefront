@@ -8,8 +8,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: "",
-      password: ""
+      username: '',
+      fullname: '',
+      password: ''
     }
     this.handleLogonSubmit = this.handleLogonSubmit.bind(this)
 
@@ -18,7 +19,10 @@ export default class App extends React.Component {
     console.log('logging on with ' + JSON.stringify(data))
     fetch('/naiveuser/users/' + data.username, {
       method: 'GET',
+      cache: 'no-cache',
       headers:{
+        'pragma': 'no-cache',
+        'cache-control': 'no-cache',
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'password': data.password
@@ -27,9 +31,11 @@ export default class App extends React.Component {
         if(response.status === 404) {
           fetch('/naiveuser/users', {
             method: 'POST',
+            cache: 'no-cache',
             body: JSON.stringify(data),
             headers:{
-              'Accept': 'application/json',
+              'pragma': 'no-cache',
+              'cache-control': 'no-cache',
               'Content-Type': 'application/json'
             }
           }).then(response => {
@@ -41,8 +47,11 @@ export default class App extends React.Component {
             // go to user page
             this.setState(data);
             console.log('post json returned = ' + JSON.stringify(json))
-          }).catch(e => { throw new Error('error in POST') })
+          }).catch(e => { throw new Error('error creating user') })
           return null;
+        }
+        if(!response.ok) {
+          throw new Error('Network response was ' + response.status);
         }
         return response.json()
       }).then(json => {
@@ -52,12 +61,12 @@ export default class App extends React.Component {
           console.log('get json returned = ' + JSON.stringify(json))
         }
       }
-    ).catch(e => { throw new Error('error in GET') })
+    ).catch(e => { throw new Error('error getting user') })
   }
   render() {
     return (
       <div class="container-fluid App">
-        <Header handleLogonSubmit={ this.handleLogonSubmit } username={this.state.username} password={this.state.password} />
+        <Header handleLogonSubmit={ this.handleLogonSubmit } username={this.state.username} fullname={this.state.fullname} />
         <Main username={this.state.username} password={this.state.password} />
       </div>
     )

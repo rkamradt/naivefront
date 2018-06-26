@@ -11,7 +11,16 @@ export default class WalletList extends React.Component {
     };
   }
   componentDidMount() {
-    fetch('/naivecoin/operator/wallets')
+    fetch('/naivecoin/operator/wallets', {
+      method: 'GET',
+      cache: 'no-cache',
+      headers:{
+        'pragma': 'no-cache',
+        'cache-control': 'no-cache',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
       .then(response => response.json())
       .then(data => this.setState({ ids: data }))
   }

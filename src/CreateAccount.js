@@ -15,7 +15,11 @@ export default class CreateAccount extends React.Component {
 
    fetch('/naiveuser/users/'+this.props.username+'/accounts', {
      method: 'POST',
+     cache: 'no-cache',
      headers:{
+       'pragma': 'no-cache',
+       'cache-control': 'no-cache',
+       'Accept': 'application/json',
        'Content-Type': 'application/json',
        'password': this.props.password
      }

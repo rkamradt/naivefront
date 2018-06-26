@@ -13,7 +13,7 @@ export default class User extends React.Component {
         fullname: '',
         email: '',
         password: '',
-        accounts: []
+        accountDetails: []
       },
     }
     this.fetchState = this.fetchState.bind(this)
@@ -24,13 +24,44 @@ export default class User extends React.Component {
   fetchState() {
     fetch('/naiveuser/users/'+this.props.username, {
       method: 'GET',
+      cache: 'no-cache',
       headers:{
+        'pragma': 'no-cache',
+        'cache-control': 'no-cache',
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'password': this.props.password
       }
-    }).then(response => response.json())
-      .then(data => this.setState({ user: data }))
+    }).then(response => {
+      if(!response.ok) {
+        throw new Error('Network response was ' + response.status);
+      }
+      return response.json()
+    }).then(data => {
+        data.accountDetails = []
+        this.setState({user: data})
+        data.accounts.forEach(d => {
+          fetch('/naiveuser/users/'+this.props.username+'/accounts/'+d, {
+            method: 'GET',
+            cache: 'no-cache',
+            headers:{
+              'pragma': 'no-cache',
+              'cache-control': 'no-cache',
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'password': this.props.password
+            }
+          }).then(response => {
+            if(!response.ok) {
+              throw new Error('Network response was ' + response.status);
+            }
+            return response.json()
+          }).then(a => {
+            data.accountDetails.push(a)
+            this.setState({user: data})
+          }).catch(e => { throw new Error('error getting account details') })
+        })
+      }).catch(e => { throw new Error('error getting user details') })
   }
   render() {
      return (
@@ -52,7 +83,7 @@ export default class User extends React.Component {
             </tr>
           </tbody>
         </table>
-        <AccountList accounts={this.state.user.accounts} />
+        <AccountList accountDetails={this.state.user.accountDetails} username={this.props.username} password={this.props.password} update={this.fetchState}/>
         <CreateAccount username={this.props.username} password={this.props.password} update={this.fetchState}/>
       </div>
      )
