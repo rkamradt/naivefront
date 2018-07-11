@@ -16,7 +16,6 @@ export default class App extends React.Component {
 
   }
   handleLogonSubmit(data) {
-    console.log('logging on with ' + JSON.stringify(data))
     fetch('/naiveuser/users/' + data.username, {
       method: 'GET',
       cache: 'no-cache',
@@ -46,7 +45,6 @@ export default class App extends React.Component {
           }).then(json => {
             // go to user page
             this.setState(data);
-            console.log('post json returned = ' + JSON.stringify(json))
           }).catch(e => { throw new Error('error creating user') })
           return null;
         }
@@ -58,7 +56,6 @@ export default class App extends React.Component {
         if(json) {
           // go to user page
           this.setState(data);
-          console.log('get json returned = ' + JSON.stringify(json))
         }
       }
     ).catch(e => { throw new Error('error getting user') })
