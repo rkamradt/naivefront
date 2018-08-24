@@ -43,6 +43,7 @@ export default class Blocks extends React.Component {
         'cache-control': 'no-cache',
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'Authorization': 'Bearer ' + this.props.token
       }
     }).then(response => {
       if(!response.ok) {

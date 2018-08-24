@@ -21,7 +21,7 @@ export default class CreateAccount extends React.Component {
        'cache-control': 'no-cache',
        'Accept': 'application/json',
        'Content-Type': 'application/json',
-       'password': this.props.password
+       'Authorization': 'Bearer ' + this.props.token
      }
    }).then(response => {
      this.props.update(); // update the list with the new account

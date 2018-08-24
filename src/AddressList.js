@@ -21,7 +21,8 @@ export default class AddressList extends React.Component {
         'pragma': 'no-cache',
         'cache-control': 'no-cache',
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.props.token
       }
     })
     .then(response => response.json())

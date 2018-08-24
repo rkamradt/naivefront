@@ -30,7 +30,7 @@ export default class User extends React.Component {
         'cache-control': 'no-cache',
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'password': this.props.password
+        'Authorization': 'Bearer ' + this.props.token
       }
     }).then(response => {
       if(!response.ok) {
@@ -49,7 +49,7 @@ export default class User extends React.Component {
               'cache-control': 'no-cache',
               'Content-Type': 'application/json',
               'Accept': 'application/json',
-              'password': this.props.password
+              'Authentication': 'bearer: ' + this.props.token
             }
           }).then(response => {
             if(!response.ok) {
@@ -83,8 +83,8 @@ export default class User extends React.Component {
             </tr>
           </tbody>
         </table>
-        <AccountList accountDetails={this.state.user.accountDetails} username={this.props.username} password={this.props.password} update={this.fetchState}/>
-        <CreateAccount username={this.props.username} password={this.props.password} update={this.fetchState}/>
+        <AccountList accountDetails={this.state.user.accountDetails} username={this.props.username} token={this.props.token} update={this.fetchState}/>
+        <CreateAccount username={this.props.username} token={this.props.token} update={this.fetchState}/>
       </div>
      )
   }

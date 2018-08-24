@@ -33,7 +33,7 @@ export default class Transfer extends React.Component {
           'cache-control': 'no-cache',
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'password': this.props.password
+          'Authorization': 'Bearer ' + this.props.token
         }
       })
       .then(response => {

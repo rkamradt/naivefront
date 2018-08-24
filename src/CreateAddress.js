@@ -18,7 +18,7 @@ export default class CreateAddress extends React.Component {
        'cache-control': 'no-cache',
        'Accept': 'application/json',
        'Content-Type': 'application/json',
-       'password': this.refs.password.value
+       'Authorization': 'Bearer ' + this.props.token
      }
    })
   }

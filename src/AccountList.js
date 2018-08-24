@@ -17,7 +17,7 @@ export default class AccountList extends React.Component {
         'cache-control': 'no-cache',
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'password': this.props.password
+        'Authorization': 'Bearer ' + this.props.token
       }
     })
     .then(response => {
@@ -58,7 +58,7 @@ export default class AccountList extends React.Component {
                         </form>
                       </td>
                       <td>
-                        <Transfer  username={this.props.username} password={this.props.password} accountId={d.id} accountDetails={this.props.accountDetails} update={this.props.update}/>
+                        <Transfer  username={this.props.username} token={this.props.token} accountId={d.id} accountDetails={this.props.accountDetails} update={this.props.update}/>
                       </td>
                     </tr>)
                 })}
