@@ -6,5 +6,5 @@ COPY . ./
 RUN npm run build
 
 FROM nginx:alpine
-COPY --from=build-deps /usr/src/app/build /etc/nginx/html
+COPY --from=build-deps /usr/src/app/dist /etc/nginx/html
 COPY nginx.conf /etc/nginx/nginx.conf
