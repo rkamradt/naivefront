@@ -18,6 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set image tag
+        id: tag
+        run: echo "tag=sha-${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
+
       - name: Log in to Container Registry
         uses: docker/login-action@v3
         with:
@@ -25,20 +29,20 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=sha,prefix={{branch}}-
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag.outputs.tag }}
+
+      - name: Update helm chart version
+        run: |
+          git clone https://x-access-token:${{ secrets.HELM_CHARTS_PAT }}@github.com/rkamradt/rkamradt-helm-charts.git
+          cd rkamradt-helm-charts
+          printf 'image:\n  tag: "%s"\n' "${{ steps.tag.outputs.tag }}" > naivefront/version-values.yaml
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add naivefront/version-values.yaml
+          git commit -m "Update naivefront image tag to ${{ steps.tag.outputs.tag }}"
+          git push
