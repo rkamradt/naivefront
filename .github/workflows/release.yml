@@ -4,9 +4,13 @@ on:
   push:
     branches: [master]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
-    uses: rkamradt/ci-workflows/.github/workflows/site-image.yml@v1
+    uses: rkamradt/ci-workflows/.github/workflows/site-image.yml@main
     with:
       helm-chart-dir: naivefront
     secrets: inherit
